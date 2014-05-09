@@ -1,0 +1,5 @@
+.git/*
+build/*
+nbproject/*
+build.xml
+manifest.mf
