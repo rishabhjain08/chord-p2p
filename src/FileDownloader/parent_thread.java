@@ -15,7 +15,7 @@ class Mythread extends Thread {
 	int StartIndex;
 	private int EndIndex;
 	private int current_Source_index;
-	static String Directory = "C:\\Users\\WASEEM\\Desktop\\P2PDownload\\";
+	static String Directory = "C:\\Users\\poarish\\Desktop\\P2PDownload\\";
 
 	// this thread doesn't  make new thread.All work is done in constructor alone. It should be called at last. It is the primary thread.
 	public Mythread (Socket soc,parent_thread pthread,int add_index,ArrayList<InetAddress> add_list, FileReceiveRequestFormat fresp,

@@ -10,9 +10,12 @@
  */
 package ClientUI;
 
+import java.awt.event.KeyEvent;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -60,7 +63,7 @@ public class UI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ResultTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        command_field = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         Options = new javax.swing.JMenu();
         SetUploadDirectory = new javax.swing.JMenuItem();
@@ -122,13 +125,26 @@ public class UI extends javax.swing.JFrame {
         ResultTable.getColumnModel().getColumn(1).setResizable(false);
         ResultTable.getColumnModel().getColumn(2).setResizable(false);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 107, 570, 390));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 107, 570, 340));
 
-        jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 12));
+        jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Connected to Server XXYYZZ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 190, 30));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 500));
+
+        command_field.setText("Command please!!!");
+        command_field.setToolTipText("Command please!!!");
+        command_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                command_fieldActionPerformed(evt);
+            }
+        });
+        command_field.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                command_fieldKeyReleased(evt);
+            }
+        });
+        getContentPane().add(command_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 590, 30));
 
         Options.setText("Options");
 
@@ -160,7 +176,7 @@ public class UI extends javax.swing.JFrame {
             System.out.println(R[0]+","+R[1]);
         }
         
-        DefaultTableModel TM = (DefaultTableModel) this.ResultTable.getModel();        
+        DefaultTableModel TM = (DefaultTableModel) this.ResultTable.getModel(); 
         for(int i=0;i<TM.getRowCount();i++)
            TM.removeRow(i);        
         
@@ -236,6 +252,25 @@ public class UI extends javax.swing.JFrame {
         Binder.killall();
     }//GEN-LAST:event_formWindowClosing
 
+private void command_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_command_fieldActionPerformed
+//    command_field
+}//GEN-LAST:event_command_fieldActionPerformed
+
+private void command_fieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_command_fieldKeyReleased
+    if (evt.getKeyChar() == KeyEvent.VK_ENTER)
+    {
+            try {
+                Binder.BackScanner.execute(command_field.getText());
+            } catch (Exception ex) {
+                try {
+                    Binder.BackScanner.getChordNode().execute(command_field.getText());
+                } catch (Exception ex1) {
+                    Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            }
+    }
+}//GEN-LAST:event_command_fieldKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -278,8 +313,8 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JTable ResultTable;
     private javax.swing.JButton Search;
     private javax.swing.JMenuItem SetUploadDirectory;
+    private javax.swing.JTextField command_field;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu1;

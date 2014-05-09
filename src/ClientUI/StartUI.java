@@ -36,6 +36,7 @@ public class StartUI extends javax.swing.JFrame {
         RemoveServer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ServerMapTable = new javax.swing.JTable();
+        RemoveServer1 = new javax.swing.JButton();
         MainMenubar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         AddNewServer = new javax.swing.JMenuItem();
@@ -75,6 +76,18 @@ public class StartUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ServerMapTable);
 
+        RemoveServer1.setText("EXECUTE COMMAND");
+        RemoveServer1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveServer1MouseClicked(evt);
+            }
+        });
+        RemoveServer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveServer1ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Options");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,20 +115,24 @@ public class StartUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RemoveServer, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(Connect, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(RemoveServer1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(RemoveServer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(Connect, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(Connect, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(RemoveServer, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RemoveServer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RemoveServer1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -154,6 +171,15 @@ public class StartUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_AddNewServerMouseClicked
+
+private void RemoveServer1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveServer1MouseClicked
+// TODO add your handling code here:
+}//GEN-LAST:event_RemoveServer1MouseClicked
+
+private void RemoveServer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveServer1ActionPerformed
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_RemoveServer1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +223,7 @@ public class StartUI extends javax.swing.JFrame {
     private javax.swing.JButton Connect;
     private javax.swing.JMenuBar MainMenubar;
     private javax.swing.JButton RemoveServer;
+    private javax.swing.JButton RemoveServer1;
     private javax.swing.JTable ServerMapTable;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;

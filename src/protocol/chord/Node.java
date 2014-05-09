@@ -562,61 +562,38 @@ public class Node implements NodeIF, Serializable {
 		this.nodeCallbacks.remove(cb);
 	}
 
-//	public static void main (String args[]) throws XmlRpcException, IOException
-//	{
-//		int po = 6;
-//		po *= 5;
-//		Node eNode = Node.toNode("localhost", 6565 + po);
-//		Node lnode = null;
-//		try {
-//			lnode = new Node();
-//			lnode.address = "localhost";
-//			//lnode.port = 6565 + 0 + po;
-//			lnode.port = 6565 + 0+ po;
-//			eNode = null; 
-//			if (!lnode.start(eNode, null))
-//			{
-//				System.out.println("Failed to start the node.");
-//				return;
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		while (true)
-//		{
-//			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//			System.out.print("$ ");
-//			String cmd = reader.readLine();
-//			if (cmd.equals("print finger table"))
-//			{
-//				lnode.fingerTable.print();
-//			}
-//			else if (cmd.equals("print snode"))
-//			{
-//				System.out.println("successor(" + lnode.getIdentifier() + ") = " + (lnode.getSuccessor() == null ? "none" : lnode.getSuccessor().getIdentifier()));
-//			}
-//			else if (cmd.equals("print pnode"))
-//			{
-//				System.out.println("predecessor(" + lnode.getIdentifier() + ") = " + (lnode.getPredecessor() == null ? "none" : lnode.getPredecessor().getIdentifier()));
-//			}
-//			else if (cmd.equals("print slist"))
-//			{
-//				System.out.println(lnode.getSuccessorList());
-//			}
-//			else if (cmd.equals("is stabilizing"))
-//			{
-//				System.out.println("stabilizing = " + lnode.stabilizationThread.isAlive());
-//			}
-//			else if (cmd.equals("is fixing fingers"))
-//			{
-//				System.out.println("stabilizing = " + lnode.fingerFixingThread.isAlive());
-//			}
-//			else if (cmd.equals("check remote node"))
-//			{
-//				System.out.println(eNode.getRemoteInterface().exists());
-//			}
-//		}
-//	}
+	public void execute (String cmd) throws Exception
+	{
+            Node lnode = this;
+            if (cmd.equals("print finger table"))
+            {
+                    lnode.fingerTable.print();
+            }
+            else if (cmd.equals("print snode"))
+            {
+                    System.out.println("successor(" + lnode.getIdentifier() + ") = " + (lnode.getSuccessor() == null ? "none" : lnode.getSuccessor().getIdentifier()));
+            }
+            else if (cmd.equals("print pnode"))
+            {
+                    System.out.println("predecessor(" + lnode.getIdentifier() + ") = " + (lnode.getPredecessor() == null ? "none" : lnode.getPredecessor().getIdentifier()));
+            }
+            else if (cmd.equals("print slist"))
+            {
+                    System.out.println(lnode.getSuccessorList());
+            }
+            else if (cmd.equals("is stabilizing"))
+            {
+                    System.out.println("stabilizing = " + lnode.stabilizationThread.isAlive());
+            }
+            else if (cmd.equals("is fixing fingers"))
+            {
+                    System.out.println("stabilizing = " + lnode.fingerFixingThread.isAlive());
+            }
+            else
+            {
+              throw new Exception();  
+            } 
+	}
 	
  	public static Node toNode (String address, int port)
 	

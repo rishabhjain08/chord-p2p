@@ -37,6 +37,7 @@ public class CNSDBManager {
             return true;
         }
         catch(Exception e){
+            e.printStackTrace();
             System.out.println("Database Connection Error!!"+e.getMessage());            
         }
         return success;       

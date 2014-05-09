@@ -36,6 +36,8 @@ public class CentralNameServer {
         FileManager BackScanner = new FileManager();
         String MY_IP=JOptionPane.showInputDialog("Enter your IP");
         String MY_PORT=JOptionPane.showInputDialog("Enter your Port");
+        if (MY_IP == null || MY_PORT == null)
+            System.exit(0);
         NEWPORT=Integer.parseInt(MY_PORT);
         BackScanner.init(null,OLDPORT,MY_IP,NEWPORT);
         BackScanner.setUploadDirectory(null);//No uploads from Name Server

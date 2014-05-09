@@ -16,10 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import protocol.chord.filemanager.*;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import protocol.chord.Identifier;
 import protocol.chord.Node;
@@ -88,7 +86,7 @@ public String[][] searchQueryServer(String FileName){
 }
 
 
-public ArrayList<InetAddress> getIPAddress(String HashKey){    
+public ArrayList<InetAddress> getIPAddress(String HashKey){
     Set<Node> Nodes = BackScanner.whoHasFile(Identifier.toIdentifier(HashKey));
     Iterator iter = Nodes.iterator();
     ArrayList<InetAddress> IP=new ArrayList<InetAddress>(); 

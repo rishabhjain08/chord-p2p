@@ -125,13 +125,13 @@ public class FileManager {
 		{
 			if (node.equals(sNode))
 			{
-				System.out.println("sending add request " + map + " to node(" + sNode + ")");
+//				System.out.println("sending add request " + map + " to node(" + sNode + ")");
 				this.remoteHandler.addKeys(map);
 			}
 			else
 			{
 				try {
-					System.out.println("sending add request " + map + " to node(" + sNode + ")");
+//					System.out.println("sending add request " + map + " to node(" + sNode + ")");
 					((FileManagerIF) sNode.getRemoteServiceInterface(FileManagerIF.class)).addKeys(map);
 				} catch (Exception e) {}
 			}
@@ -274,7 +274,7 @@ public class FileManager {
 		int i = 0;
 		for (Node sNode : succList)
 		{
-			System.out.println("propagating keys " + this.keys1.get(0) + " to " + sNode + " DISTANCE = " + (i + 1));
+//			System.out.println("propagating keys " + this.keys1.get(0) + " to " + sNode + " DISTANCE = " + (i + 1));
 			try
 			{
 				((FileManagerIF) sNode.getRemoteServiceInterface(FileManagerIF.class)).setKeys(FileManager.toRemoteKeys(this.keys1.get(0)), i + 1);
@@ -303,8 +303,8 @@ public class FileManager {
 			//copy the keys to the predecessor
 			try
 			{
-				System.out.println("following keys are being copied from " + FileManager.this.node.getIdentifier() + " to " + newNode.getIdentifier());
-				System.out.println(copyKeys);
+				System.out.println("keys are being copied from " + FileManager.this.node.getIdentifier() + " to " + newNode.getIdentifier());
+//				System.out.println(copyKeys);
 				boolean success = ((FileManagerIF) newNode.getRemoteServiceInterface(FileManagerIF.class)).addKeys(copyKeys);
 				if (success)
 				{
@@ -350,7 +350,7 @@ public class FileManager {
 			Map<Identifier, HashSet<Node>> addKeys = FileManager.toLocalKeys(altKeys);
 //			synchronized (FileManager.this.keys1)
 //			{
-				System.out.println("received a add request " + (altKeys == null ? "null" : altKeys));
+//				System.out.println("received a add request " + (altKeys == null ? "null" : altKeys));
 				Map<Identifier, HashSet<Node>> myKeys = FileManager.this.keys1.get(0);
 				Set<Identifier> ids = addKeys.keySet();
 				for (Identifier ident : ids)
@@ -375,7 +375,8 @@ public class FileManager {
 					return false;
 					//throw new IllegalArgumentException("does not maintain so far away keys. allowed distance <= " + FileManager.this.keys1.size());
 				}
-				System.out.println("received a set request " + (altKeys == null ? "null" : altKeys + " DISTANCE = " + distance));
+				System.out.println("received a set request " + (altKeys == null ? "null" : " DISTANCE = " + distance));
+//				System.out.println("received a set request " + (altKeys == null ? "null" : altKeys + " DISTANCE = " + distance));
 				Map<Identifier, HashSet<Node>> newKeys = FileManager.toLocalKeys(altKeys);
 				FileManager.this.keys1.set(distance, newKeys);
 //			}
@@ -470,77 +471,58 @@ public class FileManager {
 		 		return Identifier.toIdentifier(new BigInteger(1, hashBytes).mod(BigInteger.ONE.shiftLeft(Identifier.maxLength)));
 	}
 
-//	public static void main (String args[]) throws IOException
-//	{
-//		System.out.println(Inet4Address.getLocalHost().getHostAddress());
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//		//Node lnode = null;
-//		//Node enode = Node.toNode("localhost", 6565);
-//		FileManager fMgr = new FileManager();
-//		int po = 32 * 1;
-//		while (true)
-//		{
-//			try
-//			{
-//				System.out.print("> ");
-//				String cmd = reader.readLine();
-//				String[] bits = cmd.split(" ");
-//				if (bits.length == 2 && bits[0].equals("first") && bits[1].equals("node"))
-//				{
-//					fMgr.init(-1, 6565 + po);
-//				}
-//				else if (bits.length == 3 && bits[0].equals("new") && bits[1].equals("node"))
-//				{
-//					fMgr.init(6565 + po, Integer.parseInt(bits[2]));
-//				}
-//				else if (cmd.equals("print ft"))
-//				{
-//					fMgr.node.fingerTable.print();
-//				}
-//				else if (cmd.equals("print snode"))
-//				{
-//					System.out.println("successor = " + fMgr.node.getSuccessor().getIdentifier());
-//				}
-//				else if (cmd.equals("print pnode"))
-//				{
-//					System.out.println("predecessor = " + (fMgr.node.getPredecessor() == null ? "none" : fMgr.node.getPredecessor().getIdentifier()));
-//				}
-//				else if (cmd.equals("print slist"))
-//				{
-//					System.out.println(fMgr.node.getSuccessorList());
-//				}
-//				else if (bits.length == 3 && bits[0].equals("set") && bits[1].equals("dir"))
-//				{
-//					if (!fMgr.setUploadDirectory(new File(bits[2])))
-//						System.out.println("fialed to set the upload dir " + bits[2]);
-//				}
-//				else if (cmd.equals("print keys"))
-//				{
-//					fMgr.printKeys();
-//				}
-//				else if (cmd.equals("print exists"))
-//				{
-//					fMgr.printKeys();
-//				}
-//				else if (bits.length == 3 && bits[0].equals("who") && bits[1].equals("has"))
-//				{
-//					System.out.println("nodes " + fMgr.whoHasFile(Identifier.toIdentifier(bits[2])) + " have " + bits[2]);
-//				}
-//				else if (bits.length == 4 && bits[0].equals("get") && bits[1].equals("fn"))
-//				{
-//					System.out.println(fMgr.getFileName(Identifier.toIdentifier(bits[2]), Node.toNode("localhost", Integer.parseInt(bits[3]))));
-//					
-//				}
-//				// 			else if (bits.length == 3 && bits[0].equals("set") && bits[1].equals("uploaddir"))
-//				// 			{
-//				// 				fMgr.setUploadDirectory(new File(bits[2]));
-//				// 			}
-//			} catch (Exception e)
-//			{
-//				e.printStackTrace();
-//			}
-//		}
-//	}
+	public void execute (String cmd) throws Exception
+	{
+                    FileManager fMgr = this;
+                    System.out.print("> ");
+                    String[] bits = cmd.split(" ");
+                    if (cmd.equals("print ft"))
+                    {
+                            fMgr.node.fingerTable.print();
+                    }
+                    else if (cmd.equals("print snode"))
+                    {
+                            System.out.println("successor = " + fMgr.node.getSuccessor().getIdentifier());
+                    }
+                    else if (cmd.equals("print pnode"))
+                    {
+                            System.out.println("predecessor = " + (fMgr.node.getPredecessor() == null ? "none" : fMgr.node.getPredecessor().getIdentifier()));
+                    }
+                    else if (cmd.equals("print slist"))
+                    {
+                            System.out.println(fMgr.node.getSuccessorList());
+                    }
+                    else if (bits.length == 3 && bits[0].equals("set") && bits[1].equals("dir"))
+                    {
+                            if (!fMgr.setUploadDirectory(new File(bits[2])))
+                                    System.out.println("fialed to set the upload dir " + bits[2]);
+                    }
+                    else if (cmd.equals("print keys"))
+                    {
+                            fMgr.printKeys();
+                    }
+                    else if (cmd.equals("print exists"))
+                    {
+                            fMgr.printKeys();
+                    }
+                    else if (bits.length == 3 && bits[0].equals("who") && bits[1].equals("has"))
+                    {
+                            System.out.println("nodes " + fMgr.whoHasFile(Identifier.toIdentifier(bits[2])) + " have " + bits[2]);
+                    }
+                    else if (bits.length == 5 && bits[0].equals("get") && bits[1].equals("fn"))
+                    {
+                            System.out.println(fMgr.getFileName(Identifier.toIdentifier(bits[2]), Node.toNode(bits[3], Integer.parseInt(bits[4]))));
+
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                    // 			else if (bits.length == 3 && bits[0].equals("set") && bits[1].equals("uploaddir"))
+                    // 			{
+                    // 				fMgr.setUploadDirectory(new File(bits[2]));
+                    // 			}
+	}
         
         public void stop(){
             node.stop();
