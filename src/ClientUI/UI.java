@@ -12,7 +12,10 @@ package ClientUI;
 
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -31,13 +34,13 @@ public class UI extends javax.swing.JFrame {
     public UI() {
         initComponents();
         Binder = new UIBinder();  
-        String CONNECTING_IP=JOptionPane.showInputDialog("Enter a connecting IP ADDRESS");        
+        String CONNECTING_IP="10.193.7.35";//JOptionPane.showInputDialog("Enter a connecting IP ADDRESS");        
         Binder.CONNECTING_IP=CONNECTING_IP;
-        String OldPort=JOptionPane.showInputDialog("Enter a connecting port number");
+        String OldPort="6565";//JOptionPane.showInputDialog("Enter a connecting port number");
         Binder.OLDPORT=Integer.parseInt(OldPort);        
-        String MY_IP=JOptionPane.showInputDialog("Enter your IP");
+        String MY_IP="10.193.7.35";//JOptionPane.showInputDialog("Enter your IP");
         Binder.MY_IP=MY_IP;                
-        String NewPort=JOptionPane.showInputDialog("Enter your unique port number");
+        String NewPort="6566";//JOptionPane.showInputDialog("Enter your unique port number");
         Binder.NEWPORT=Integer.parseInt(NewPort);        
         Binder.init();        
     }
@@ -219,7 +222,8 @@ public class UI extends javax.swing.JFrame {
             String HashKey = "";            
             FileName = (String) this.ResultTable.getValueAt(this.ResultTable.getSelectedRow(), 1);
             HashKey = (String) this.ResultTable.getValueAt(this.ResultTable.getSelectedRow(), 2);
-            ArrayList<InetAddress> IP =  Binder.getIPAddress(HashKey); 
+            ArrayList<InetAddress> IP =  Binder.getIPAddress(HashKey);            
+            
             System.out.println(" FILE DOWNLOADING STARTED ");
             System.out.println(" FILE NAME : "+FileName);
             for (InetAddress I : IP){

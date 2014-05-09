@@ -53,7 +53,7 @@ public void init(){
 public void setUploadDirectory(String filePath){
     System.out.println("Upload Dir : "+filePath);
     BackScanner.setUploadDirectory(new File(filePath));
-    Source_side.directory=filePath;    
+    Source_side.directory=filePath+"\\";    
 }
 
 
@@ -150,8 +150,7 @@ public void FileDownloaderProxy(String FileName,ArrayList<InetAddress> IP){
 
 public void killall(){
     BackScanner.stop();
-    System.exit(1);    
-    
+    System.exit(1);        
 }
  
  
