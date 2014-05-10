@@ -220,7 +220,7 @@ public class FileManager {
 				Set<Identifier> ids = keys.keySet();
 				for (Identifier id : ids)
 				{
-					if (id.between(from, to, true, false))
+					if (id.between(from, to, false, true))
 					{
 						result.put(id.toString(), keys.get(id));
 					}
@@ -247,7 +247,7 @@ public class FileManager {
 				{
 					Identifier id = itr.next();
 //					System.out.println("in here");
-					if (id.between(from, to, true, false))
+					if (id.between(from, to, false, true))
 					{
 						itr.remove();
 //						System.out.println("removed some keys/transfered the responsibility i = " + i);
