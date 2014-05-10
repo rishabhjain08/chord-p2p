@@ -22,8 +22,9 @@ public class ControlPacketFormation {
 			return temp;
 			
 		} catch (IOException e) {
+                        System.out.println("****************Socket not formed : SendDataRequest");
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return null;
 	}

@@ -64,7 +64,7 @@ public class CNSQueryHandler {
                    
                     
                     //TODO: Do lazy handling
-                    String SQL="SELECT * FROM FILEMAPS WHERE FILENAME LIKE " +"'%"+FileQuery+"%'";
+                    String SQL="SELECT * FROM FILEMAPS WHERE FILENAME LIKE " +"'%"+FileQuery+"%' ORDER BY HashKey";
                     System.out.println("SQL STATEMENT : " + SQL);
                     ResultSet RES = QueryDB.fetchData(SQL);
                     System.out.println("Found Something , Yay !!");                    

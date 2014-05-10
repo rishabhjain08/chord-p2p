@@ -73,7 +73,12 @@ class Mythread extends Thread {
 		ControlPacketFormation intrfc = new ControlPacketFormation();
 		Socket soc = intrfc.SendDataRequest(filename, parent_thread.LISTENPORT,
 				Addr);
-		FileReceiveRequestFormat fresp = intrfc.parseDataResponse(soc);
+                FileReceiveRequestFormat fresp;
+                if(soc!=null)
+                    fresp = intrfc.parseDataResponse(soc);
+                else
+                    fresp =null;
+                
 		//soc.close();
 		return postDataResponseSink(soc,Addr, fresp, filename, StartIndex, EndIndex);
 	}
@@ -97,6 +102,13 @@ class Mythread extends Thread {
 			
 		//e.printStackTrace();	
 	//	}
+            if(soc==null){
+                int nextaddressindex1 = getNextAddressindex();
+		if (nextaddressindex1 == -1)
+			return 0;
+                return SecondaryThread(pth.getAddress(nextaddressindex1),
+					filename, StartIndex, EndIndex);
+            }
 		
 		String packet = SendRecv.FormPacket_DataInit(StartIndex, EndIndex,
 				filename);
@@ -162,8 +174,22 @@ public class parent_thread {
 	// each of secondary threads.
 	int PrimaryThread(String filename, int PortNoFirst) throws IOException {
 		ControlPacketFormation intrfc = new ControlPacketFormation();
-		Socket soc = intrfc.SendDataRequest(filename, LISTENPORT,
-				this.FileContainingnodes.get(0));
+                Socket soc=null;
+                
+                for(int z=0;z<this.FileContainingnodes.size();z++){
+                    InetAddress a= this.FileContainingnodes.get(z);
+                    soc = intrfc.SendDataRequest(filename, LISTENPORT,
+				a);
+                    if (soc==null){
+                        this.FileContainingnodes.remove(a);
+                    }
+                    else
+                        break;
+                }
+                if(soc==null)
+                    return -1;
+                 
+                 
 		FileReceiveRequestFormat fresp = intrfc.parseDataResponse(soc);
 		//soc.close();
 		//this.FileContainingnodes.addAll(fresp.nodes); was there earlier
