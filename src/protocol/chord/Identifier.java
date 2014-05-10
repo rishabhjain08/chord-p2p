@@ -13,7 +13,7 @@ public class Identifier implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	/* bit length */
-	public transient static final int maxLength = 140;
+	public transient static final int maxLength = 5;
 	public String id;
 	
 	public Identifier ()
@@ -139,7 +139,7 @@ public class Identifier implements Serializable {
 
 		BigInteger id = new BigInteger(this.id);
 		BigInteger maxId = BigInteger.ONE.shiftLeft(Identifier.maxLength);
-		id = id.compareTo(id1) < 0 ? id.add(maxId) : id;
+		id = id.compareTo(id1) <= 0 ? id.add(maxId) : id;
 		id2 = id2.compareTo(id1) <= 0 ? id2.add(maxId) : id2;
 		
 		

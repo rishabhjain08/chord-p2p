@@ -91,7 +91,7 @@ public class CentralNameServer {
                     while(true){
                     System.out.println("my succ for node " + succ + " is ?");
                     //+ (nextSucc == null ? "null" : nextSucc));    
-                    Node nextSucc=succ.findSuccessor(succ.getIdentifier());
+                    Node nextSucc=succ.getRemoteInterface().getSuccessor();
                     System.out.println("my next succ for node " + nextSucc + " is ?");                    
                     if(nextSucc!=null && !succ.equals(nextSucc)){
                         succ=nextSucc;
