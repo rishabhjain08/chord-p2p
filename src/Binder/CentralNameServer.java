@@ -50,7 +50,7 @@ public class CentralNameServer {
             if(succ!=null && ActiveCNS){
                 
                 System.out.println("Finally I am not lonely !!");
-                while(ActiveCNS){      
+                while(ActiveCNS){    
                     try{
                         FileManagerIF succFM =(FileManagerIF) succ.getRemoteServiceInterface(protocol.chord.filemanager.FileManagerIF.class);
                         Map<String, HashSet<Node>> KEY = succFM.getAllKeys();
