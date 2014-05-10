@@ -5,7 +5,7 @@ import java.util.List;
 public interface NodeIF {
 
 	public Node findPredecessor (Identifier ident);
-//	public Node findSuccessor (Identifier ident);
+	public Node findSuccessor (Identifier ident);
 	//public Node remote_findSuccessor (Identifier ident);
 	public Node closestPrecedingFinger (Identifier ident);
 	public boolean exists ();

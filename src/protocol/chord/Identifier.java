@@ -139,7 +139,7 @@ public class Identifier implements Serializable {
 
 		BigInteger id = new BigInteger(this.id);
 		BigInteger maxId = BigInteger.ONE.shiftLeft(Identifier.maxLength);
-		id = id.compareTo(id1) < 0 ? id.add(maxId) : id;
+		id = id.compareTo(id1) <= 0 ? id.add(maxId) : id;
 		id2 = id2.compareTo(id1) <= 0 ? id2.add(maxId) : id2;
 		
 		
