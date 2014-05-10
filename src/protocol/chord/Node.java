@@ -254,7 +254,7 @@ public class Node implements NodeIF, Serializable {
 			sList = new LinkedList<Node>(sNode.getRemoteInterface().getSuccessorList());
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return;
 		}
 		sList.add(0, sNode);
@@ -663,6 +663,7 @@ public class Node implements NodeIF, Serializable {
 		Object serviceInterface = null;
 		try {
 	    	XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+                System.out.println("http://" + this.address + ":" + this.port + "/xmlrpc");
 			config.setServerURL(new URL("http://" + this.address + ":" + this.port + "/xmlrpc"));
 		    config.setEnabledForExtensions(true);
 	        config.setContentLengthOptional(false);

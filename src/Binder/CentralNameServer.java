@@ -52,6 +52,7 @@ public class CentralNameServer {
                 System.out.println("Finally I am not lonely !!");
                 while(ActiveCNS){      
                     try{
+                        System.out.println("1: " + succ.getAddress() + ":" + succ.getPort());
                         FileManagerIF succFM =(FileManagerIF) succ.getRemoteServiceInterface(protocol.chord.filemanager.FileManagerIF.class);
                         Map<String, HashSet<Node>> KEY = succFM.getAllKeys();
                         System.out.println("**************Fetched Something + "+KEY.size());
@@ -64,6 +65,7 @@ public class CentralNameServer {
 
                             while(I.hasNext()){
                                 Node N  = (Node) I.next();
+                                System.out.println("2: " + N.getAddress() + ":" + N.getPort());
                                 FileManagerIF F = (FileManagerIF) N.getRemoteServiceInterface(protocol.chord.filemanager.FileManagerIF.class);
                                 String SQL="INSERT INTO "+ DBM.MainTable + "(FileName,HashKey)"+" VALUES( '"+F.getFileName(Identifier.toIdentifier( entry.getKey()))+"','"+entry.getKey() + "')";
                                 System.out.println("SQL QUERY : : "+SQL);
@@ -80,12 +82,13 @@ public class CentralNameServer {
                         }
                 }
                 catch (Exception e){
+                    e.printStackTrace();
                     System.out.println("Caught a bad one today ! "+e.getMessage());
                     succ = protocolNode;
                 }
                     
                                         //Doubt : Should I use Remote Interface Here                     
-                    while(true){    
+                    while(true){
                     System.out.println("my succ for node " + succ + " is ?");
                     //+ (nextSucc == null ? "null" : nextSucc));    
                     Node nextSucc=succ.findSuccessor(succ.getIdentifier());
