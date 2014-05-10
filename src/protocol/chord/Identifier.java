@@ -13,7 +13,7 @@ public class Identifier implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	/* bit length */
-	public transient static final int maxLength = 140;
+	public transient static final int maxLength = 5;
 	public String id;
 	
 	public Identifier ()

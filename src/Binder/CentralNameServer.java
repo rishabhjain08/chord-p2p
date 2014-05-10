@@ -89,10 +89,10 @@ public class CentralNameServer {
                     
                                         //Doubt : Should I use Remote Interface Here                     
                     while(true){
-                    System.out.println("my succ for node " + succ + " is ?");
+//                    System.out.println("my succ for node " + succ + " is ?");
                     //+ (nextSucc == null ? "null" : nextSucc));    
                     Node nextSucc=succ.findSuccessor(succ.getIdentifier());
-                    System.out.println("my next succ for node " + nextSucc + " is ?");                    
+//                    System.out.println("my next succ for node " + nextSucc + " is ?");                    
                     if(nextSucc!=null && !succ.equals(nextSucc)){
                         succ=nextSucc;
                         break;
