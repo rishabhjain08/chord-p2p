@@ -35,13 +35,13 @@ public class UI extends javax.swing.JFrame {
     public UI() {
         initComponents();
         Binder = new UIBinder();  
-        String CONNECTING_IP="10.193.7.35";//JOptionPane.showInputDialog("Enter a connecting IP ADDRESS");        
+        String CONNECTING_IP=JOptionPane.showInputDialog("Enter a connecting IP ADDRESS");        
         Binder.CONNECTING_IP=CONNECTING_IP;
-        String OldPort="6565";//JOptionPane.showInputDialog("Enter a connecting port number");
+        String OldPort=JOptionPane.showInputDialog("Enter a connecting port number");
         Binder.OLDPORT=Integer.parseInt(OldPort);        
-        String MY_IP="10.193.7.35";//JOptionPane.showInputDialog("Enter your IP");
+        String MY_IP=JOptionPane.showInputDialog("Enter your IP");
         Binder.MY_IP=MY_IP;                
-        String NewPort="6566";//JOptionPane.showInputDialog("Enter your unique port number");
+        String NewPort=JOptionPane.showInputDialog("Enter your unique port number");
         Binder.NEWPORT=Integer.parseInt(NewPort);        
         Binder.init();        
     }

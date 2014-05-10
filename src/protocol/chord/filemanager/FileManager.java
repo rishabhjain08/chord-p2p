@@ -386,6 +386,7 @@ public class FileManager {
                 @Override
                 public Map<String, HashSet<Node>> getAllKeys ()
                 {
+                        System.out.println("starting telling name server about my keys");
                         Map<String, HashSet<Node>> result = new HashMap<String, HashSet<Node>>();
         //		synchronized (FileManager.this.keys1)
         //		{
@@ -396,7 +397,8 @@ public class FileManager {
                                         result.putAll(FileManager.toRemoteKeys(keys));
                                 }
         //		}
-                        return result;
+                        System.out.println("telling name server about my keys");
+                                return result;
                 }
 
                 @Override
